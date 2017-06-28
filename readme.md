@@ -1,0 +1,1 @@
+An example of using webpack to package a website

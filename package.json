@@ -1,0 +1,19 @@
+{
+  "name": "websitepack",
+  "version": "1.0.0",
+  "description": "a website use webpack example",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --config build/webpack.config.js"
+  },
+  "author": "Alberto Chen <beetle131005@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "animate.css": "^3.5.2",
+    "babel-core": "^6.25.0",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "webpack": "^3.0.0"
+  }
+}
