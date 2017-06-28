@@ -1,1 +1,3 @@
-alert('hi')
+import bar from './bar';
+
+bar();
