@@ -1,3 +1,1 @@
-import bar from './bar';
-
-bar();
+import '../style/index.scss'
