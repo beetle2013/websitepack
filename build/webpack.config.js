@@ -1,3 +1,4 @@
+var ProvidePlugin = require('webpack').ProvidePlugin;
 var path = require('path');
 
 module.exports = {
@@ -28,5 +29,13 @@ module.exports = {
                 test: /\.(woff|woff2|eot|ttf|otf)$/, use: ['file-loader']
             }
         ]
-    }
+    },
+    plugins: [
+        new ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            "window.jQuery": 'jquery',
+            "windows.jQuery": 'jquery',
+        })
+    ],
 };
