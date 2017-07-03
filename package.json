@@ -4,7 +4,8 @@
   "description": "a website use webpack example",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --config build/webpack.config.js"
+    "dev": "node build/dev.js",
+    "build": "webpack --config build/webpack.config.js -p"
   },
   "author": "Alberto Chen <beetle131005@gmail.com>",
   "license": "ISC",
@@ -14,12 +15,18 @@
     "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.5.2",
     "css-loader": "^0.28.4",
+    "express": "^4.15.3",
+    "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
     "font-awesome": "^4.7.0",
+    "html-webpack-plugin": "^2.29.0",
     "jquery": "^3.2.1",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
-    "webpack": "^3.0.0"
-  }
+    "url-loader": "^0.5.9",
+    "webpack": "^3.0.0",
+    "webpack-dev-middleware": "^1.11.0"
+  },
+  "dependencies": {}
 }

@@ -1,10 +1,12 @@
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ProvidePlugin = require('webpack').ProvidePlugin;
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
 
 module.exports = {
     entry: './src/assets/js/index.js',
     output: {
-        filename: 'bundle.js',
+        filename: 'assets/js/bundle.[chunkhash].js',
         path: path.resolve(__dirname, '../dist')
     },
     module: {
@@ -14,19 +16,16 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: [{
-                    loader: "style-loader"
-                }, {
-                    loader: "css-loader"
-                }, {
-                    loader: "sass-loader"
-                }]
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'sass-loader']
+                })
             },
             {
-                test: /\.(png|svg|jpe?g|gif)$/, use: ['file-loader']
+                test: /\.(png|svg|jpe?g|gif)$/, use: ['url-loader?limit=100000&name=assets/imgs/[hash].[ext]']
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/, use: ['file-loader']
+                test: /\.(woff|woff2|eot|ttf|otf)$/, use: ['file-loader?limit=100000&name=assets/fonts/[hash].[ext]']
             }
         ]
     },
@@ -36,6 +35,18 @@ module.exports = {
             jQuery: 'jquery',
             "window.jQuery": 'jquery',
             "windows.jQuery": 'jquery',
-        })
+        }),
+        new HtmlWebpackPlugin({
+            template:'index.html',
+            title: 'Output Management',
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true
+            }
+        }),
+        new ExtractTextPlugin({
+            filename: 'assets/css/style.[chunkhash].css'
+        }),
     ],
 };
