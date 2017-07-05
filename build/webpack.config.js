@@ -1,4 +1,5 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ProvidePlugin = require('webpack').ProvidePlugin;
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
@@ -7,7 +8,8 @@ module.exports = {
     entry: './src/assets/js/index.js',
     output: {
         filename: 'assets/js/bundle.[chunkhash].js',
-        path: path.resolve(__dirname, '../dist')
+        path: path.resolve(__dirname, '../dist'),
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -22,10 +24,10 @@ module.exports = {
                 })
             },
             {
-                test: /\.(png|svg|jpe?g|gif)$/, use: ['url-loader?limit=100000&name=assets/imgs/[hash].[ext]']
+                test: /\.(png|jpe?g|gif)(\?.*)?$/, use: ['url-loader?limit=100000&name=assets/imgs/[name].[ext]']
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/, use: ['file-loader?limit=100000&name=assets/fonts/[hash].[ext]']
+                test: /\.(woff|woff2|eot|ttf|otf|svg)$/, use: ['file-loader?name=assets/fonts/[name].[ext]']
             }
         ]
     },
@@ -37,8 +39,8 @@ module.exports = {
             "windows.jQuery": 'jquery',
         }),
         new HtmlWebpackPlugin({
-            template:'index.html',
-            title: 'Output Management',
+            template: 'src/index.html',
+            inject: true,
             minify: {
                 removeComments: true,
                 collapseWhitespace: true,
@@ -48,5 +50,10 @@ module.exports = {
         new ExtractTextPlugin({
             filename: 'assets/css/style.[chunkhash].css'
         }),
+        new CopyWebpackPlugin([{
+            from: './src/assets/imgs', to: '../dist/assets/imgs'
+        }]),
+
     ],
+
 };

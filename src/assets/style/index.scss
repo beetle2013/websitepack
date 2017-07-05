@@ -1,5 +1,21 @@
-//@import '~bootstrap/dist/css/bootstrap.min.css';
 //@import '~font-awesome/css/font-awesome.min.css';
-@import './_variables.scss';
-@import './bootstrap.scss';
-@import './_bootswatch.scss';
+@import './bootstrap';
+@import './overrides';
+
+@import './modules/mixins';
+@import './modules/buttons';
+@import './modules/elements';
+@import './partials/config';
+@import './partials/layout';
+@import './partials/pages/index';
+@import './partials/snippets/slider';
+@import './partials/pages/pricing';
+@import './partials/snippets/features';
+@import './partials/pages/coming_soon';
+
+@import '~flipclock/compiled/flipclock.css';
+
+.particles-js-canvas-el{
+  position: absolute;
+  top:0;
+}
